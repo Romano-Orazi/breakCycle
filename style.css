@@ -32,6 +32,12 @@ body {
     padding: 5px;
     background: #fff;
 }
+
+/* Centriamo i titoli e i bottoni */
+h1, h2, h3, button {
+text-align: center;
+}
+
 /* Titoli e testo in grassetto */
 h1, h2, h3, p, li, strong, em, button {
     font-weight: bold;
