@@ -7,6 +7,14 @@ updateBreakList();
 let isLooping = false;
 let currentTimer = null;
 
+// Funzione per formattare la data in dd/mm/yyyy
+function formatDate(date) {
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0'); // I mesi partono da 0
+    const yyyy = date.getFullYear();
+    return `${dd}/${mm}/${yyyy}`;
+}
+
 // ====== AGGIORNA L'ORA CORRENTE ======
 function updateCurrentTime() {
     const now = new Date();
@@ -14,7 +22,12 @@ function updateCurrentTime() {
     if (currentTimeEl) currentTimeEl.textContent = now.toLocaleTimeString();
 }
 setInterval(updateCurrentTime, 1000);
+
 window.onload = () => {
+    // Mostra la data odierna in formato dd/mm/yyyy
+    const currentDateEl = document.getElementById("current-date");
+    if (currentDateEl) currentDateEl.textContent = formatDate(new Date());
+
     updateCurrentTime();
     loadProjectCode();
 };
