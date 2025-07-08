@@ -24,10 +24,11 @@ function updateCurrentTime() {
 setInterval(updateCurrentTime, 1000);
 
 window.onload = () => {
-    // Mostra la data odierna in formato dd/mm/yyyy
-    const currentDateEl = document.getElementById("current-date");
+    // Popola la data odierna
+    const currentDateEl = document.getElementById("current-date-full");
     if (currentDateEl) currentDateEl.textContent = formatDate(new Date());
 
+    // Aggiorna l'ora corrente e carica il codice progetto
     updateCurrentTime();
     loadProjectCode();
 };
