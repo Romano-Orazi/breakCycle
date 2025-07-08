@@ -4,7 +4,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 /* Font pixelato e stile globale */
 body {
     font-family: 'Press Start 2P', monospace;
@@ -14,7 +13,6 @@ body {
     letter-spacing: 1px;
     padding: 2rem;
 }
-
 /* Container principale */
 .container {
     max-width: 600px;
@@ -25,7 +23,6 @@ body {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
     position: relative;
 }
-
 /* Logo */
 .logo {
     width: 120px;
@@ -35,31 +32,26 @@ body {
     padding: 5px;
     background: #fff;
 }
-
 /* Titoli e testo in grassetto */
 h1, h2, h3, p, li, strong, em, button {
     font-weight: bold;
     text-transform: uppercase;
 }
-
 /* Spaziatura tra sezioni */
 .container > * {
     margin-bottom: 2rem;
 }
-
 /* Sezione codice progetto */
 #project-code-container {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
-
 .input-group {
     display: flex;
     gap: 10px;
     margin-bottom: 0.5rem;
 }
-
 .input-group input {
     flex: 1;
     padding: 0.5rem;
@@ -67,17 +59,14 @@ h1, h2, h3, p, li, strong, em, button {
     border: 1px solid #ddd;
     border-radius: 3px;
 }
-
 .input-group button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
 }
-
 /* Informazioni temporali */
 #time-info p {
-    margin-bottom: 1.5rem; /* Distanziamento tra righe */
+    margin-bottom: 1.5rem;
 }
-
 /* Timer Countdown */
 #countdown {
     font-size: 3rem;
@@ -89,7 +78,6 @@ h1, h2, h3, p, li, strong, em, button {
     border-radius: 8px;
     border: 2px dashed #007bff;
 }
-
 /* Pulsanti */
 button {
     padding: 10px 15px;
@@ -102,11 +90,9 @@ button {
     transition: background-color 0.3s;
     margin-bottom: 1.5rem;
 }
-
 button:hover {
     background-color: #0056b3;
 }
-
 /* Bottone Loop */
 #loop-btn {
     background-color: #28a745;
@@ -120,25 +106,20 @@ button:hover {
     transition: transform 0.3s ease;
     margin-left: 10px;
 }
-
 #loop-btn:hover .loop-icon {
     animation: rotate 1.5s linear infinite;
 }
-
 .loop-icon {
     font-size: 24px;
     transition: transform 0.5s ease;
 }
-
 @keyframes rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
-
 .loop-icon.active {
     animation: rotate 1.5s linear infinite;
 }
-
 /* Lista consigli e pause */
 ul {
     font-size: 14px;
@@ -146,17 +127,14 @@ ul {
     padding-left: 1.2em;
     margin-bottom: 2rem;
 }
-
 li {
     margin-bottom: 0.8rem;
 }
-
 /* Responsive Design */
 @media (max-width: 600px) {
     .container {
         padding: 1rem;
     }
-    
     #countdown {
         font-size: 2.2rem;
     }
