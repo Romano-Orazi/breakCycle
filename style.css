@@ -39,7 +39,7 @@ h1, h2, h3, p, li, strong, em, button {
 }
 /* Spaziatura tra sezioni */
 .container > * {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 /* Sezione codice progetto */
 #project-code-container {
