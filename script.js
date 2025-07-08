@@ -7,12 +7,12 @@ updateBreakList();
 
 let isLooping = false;
 let currentTimer = null;
+let loopInterval = null;
 
 // ====== AGGIORNA L'ORA CORRENTE ======
 function updateCurrentTime() {
     const now = new Date();
-    const currentTimeEl = document.getElementById("current-time");
-    if (currentTimeEl) currentTimeEl.textContent = now.toLocaleTimeString();
+    document.getElementById("current-time").textContent = now.toLocaleTimeString();
 }
 setInterval(updateCurrentTime, 1000);
 
@@ -26,7 +26,7 @@ function startCountdown(duration) {
     const countdownEl = document.getElementById("countdown");
     let timer = duration / 1000;
     countdownEl.textContent = formatTime(timer);
-
+    
     clearInterval(currentTimer);
     currentTimer = setInterval(() => {
         timer--;
@@ -45,16 +45,13 @@ function startCountdown(duration) {
                 playAudio('start');
                 
                 const now = new Date();
-                const newDuration = 15 * 60 * 1000;
-                const endTime = new Date(now.getTime() + newDuration);
+                const duration = 15 * 60 * 1000;
+                const endTime = new Date(now.getTime() + duration);
                 
-                const startTimeEl = document.getElementById("start-time");
-                const endTimeEl = document.getElementById("end-time");
+                document.getElementById("start-time").textContent = now.toLocaleTimeString();
+                document.getElementById("end-time").textContent = endTime.toLocaleTimeString();
                 
-                if (startTimeEl) startTimeEl.textContent = now.toLocaleTimeString();
-                if (endTimeEl) endTimeEl.textContent = endTime.toLocaleTimeString();
-                
-                startCountdown(newDuration);
+                startCountdown(duration);
             }
         }
     }, 1000);
@@ -71,16 +68,13 @@ function startBreak() {
     const now = new Date();
     const duration = 15 * 60 * 1000;
     const endTime = new Date(now.getTime() + duration);
-
-    const startTimeEl = document.getElementById("start-time");
-    const endTimeEl = document.getElementById("end-time");
-
-    if (startTimeEl) startTimeEl.textContent = now.toLocaleTimeString();
-    if (endTimeEl) endTimeEl.textContent = endTime.toLocaleTimeString();
-
+    
+    document.getElementById("start-time").textContent = now.toLocaleTimeString();
+    document.getElementById("end-time").textContent = endTime.toLocaleTimeString();
+    
     playAudio('start');
     startCountdown(duration);
-
+    
     const projectCode = localStorage.getItem("projectCode") || "Nessun codice";
     todayBreaks.push({ 
         date: today, 
@@ -91,31 +85,35 @@ function startBreak() {
     updateBreakList();
 }
 
+// ====== LOOP FUNCTIONALITY ======
+function toggleLoop() {
+    isLooping = !isLooping;
+    const icon = document.querySelector('.loop-icon');
+    
+    if (isLooping) {
+        icon.classList.add('active');
+    } else {
+        icon.classList.remove('active');
+    }
+}
+
 // ====== NOTIFICHE AUDIO ======
 function playAudio(type) {
-    try {
-        const sound = document.getElementById(`${type}Sound`);
-        if (sound) {
-            sound.volume = 0.2;
-            sound.currentTime = 0;
-            sound.play();
-        }
-    } catch (error) {
-        console.warn(`Errore riproduzione audio "${type}":`, error);
-    }
+    const sound = document.getElementById(`${type}Sound`);
+    sound.volume = 0.2;
+    sound.currentTime = 0;
+    sound.play();
 }
 
 // ====== LISTA DELLE PAUSE ======
 function updateBreakList() {
     const list = document.getElementById("breaks-list");
-    if (list) {
-        list.innerHTML = "";
-        todayBreaks.forEach(b => {
-            const li = document.createElement("li");
-            li.textContent = `Pausa alle ${b.time} - Codice: ${b.code}`;
-            list.appendChild(li);
-        });
-    }
+    list.innerHTML = "";
+    todayBreaks.forEach(b => {
+        const li = document.createElement("li");
+        li.textContent = `Pausa alle ${b.time} - Codice: ${b.code}`;
+        list.appendChild(li);
+    });
 }
 
 // ====== MODIFICA CODICE PROGETTO ======
@@ -124,7 +122,9 @@ function saveProjectCode() {
     if (code) {
         localStorage.setItem("projectCode", code);
         document.getElementById("display-project-code").textContent = code;
-        document.querySelector(".input-group").style.display = "none";
+        document.getElementById("edit-btn").style.display = "inline-block";
+        document.getElementById("project-code").style.display = "none";
+        document.querySelector("button[onclick='saveProjectCode()']").style.display = "none";
     } else {
         alert("Per favore, inserisci un codice progetto.");
     }
@@ -135,16 +135,19 @@ function loadProjectCode() {
     if (savedCode) {
         document.getElementById("project-code").value = savedCode;
         document.getElementById("display-project-code").textContent = savedCode;
-        document.querySelector(".input-group").style.display = "none";
+        document.getElementById("edit-btn").style.display = "inline-block";
+        document.getElementById("project-code").style.display = "none";
+        document.querySelector("button[onclick='saveProjectCode()']").style.display = "none";
     }
 }
 
-// ====== LOOP FUNCTIONALITY ======
-function toggleLoop() {
-    isLooping = !isLooping;
-    const icon = document.querySelector('.loop-icon');
+// ====== TOGGLE EDIT ======
+function toggleEdit() {
+    const input = document.getElementById("project-code");
+    const saveBtn = document.querySelector("button[onclick='saveProjectCode()']");
+    const editBtn = document.getElementById("edit-btn");
     
-    if (icon) {
-        icon.classList.toggle('active', isLooping);
-    }
+    input.style.display = input.style.display === "none" ? "inline-block" : "none";
+    saveBtn.style.display = saveBtn.style.display === "none" ? "inline-block" : "none";
+    editBtn.style.display = editBtn.style.display === "none" ? "inline-block" : "none";
 }
