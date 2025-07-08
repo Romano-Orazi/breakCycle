@@ -39,7 +39,7 @@ h1, h2, h3, p, li, strong, em, button {
 }
 /* Spaziatura tra sezioni */
 .container > * {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 /* Sezione codice progetto */
 #project-code-container {
@@ -122,7 +122,7 @@ button:hover {
 }
 /* Lista consigli e pause */
 ul {
-    font-size: 12px;
+    font-size: 10px;
     list-style-type: square;
     padding-left: 1.2em;
     margin-bottom: 0.8rem;
