@@ -1,45 +1,80 @@
-body {
-    font-size: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+/* Reset base */
+* {
     margin: 0;
     padding: 0;
-    font-weight: bold; /* Grassetto globale */
+    box-sizing: border-box;
 }
 
+/* Stile globale con font pixelato */
+body {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 16px;
+    background-color: #f4f4f4;
+    color: #333;
+    letter-spacing: 1px;
+    padding: 2rem;
+}
+
+/* Container principale */
 .container {
     max-width: 600px;
     margin: auto;
     padding: 2rem;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin-top: 50px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
-.logo { 
-    width: 100px;
-    margin-bottom: 20px;
+/* Logo */
+.logo {
+    width: 120px;
+    display: block;
+    margin: 0 auto 1.5rem;
+    border: 2px solid #000;
+    padding: 5px;
+    background: #fff;
 }
 
+/* Titoli e testo in grassetto */
+h1, h2, h3, p, li, strong, em, button {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Colore blu per "Programmazione Java" e codice progetto */
+#project-code-container + p em,
+#display-project-code {
+    color: blue;
+}
+
+/* Colore verde/oro/rosso per orari */
+#start-time span { color: #28a745; } /* Verde */
+#end-time span { color: #dc3545; }   /* Rosso */
+
+/* Timer Countdown */
 #countdown {
     font-size: 3rem;
-    margin: 20px 0;
-    color: #007BFF;
-    font-weight: bold;
+    margin: 2rem 0;
+    color: #007bff;
+    text-align: center;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px dashed #007bff;
 }
 
+/* Pulsanti */
 button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007BFF;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-weight: bold;
-    margin: 10px 5px 20px 5px;
+    transition: background-color 0.3s;
+    margin: 10px 5px 15px 5px;
 }
 
 button:hover {
@@ -49,7 +84,7 @@ button:hover {
 /* Bottone Loop */
 #loop-btn {
     background-color: #28a745;
-    padding: 10px 15px;
+    padding: 10px;
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -59,8 +94,8 @@ button:hover {
     transition: transform 0.3s ease;
 }
 
-#loop-btn:hover {
-    transform: rotate(90deg);
+#loop-btn:hover .loop-icon {
+    animation: rotate 1.5s linear infinite;
 }
 
 .loop-icon {
@@ -77,35 +112,25 @@ button:hover {
     animation: rotate 1.5s linear infinite;
 }
 
+/* Lista consigli e pause */
 ul {
-    font-size: 16px;
-    list-style-type: decimal;
-    padding-left: 0;
-    font-weight: bold;
+    font-size: 14px;
+    list-style-type: square;
+    padding-left: 1.2em;
+    margin: 1rem 0;
 }
 
 li {
-    font-size: 16px;
-    margin: 5px 0;
-    font-weight: bold;
+    margin-bottom: 0.5em;
 }
 
-/* Colore blu per "Programmazione Java" */
-#project-code-container + p em {
-    color: blue;
-}
-
-/* Colore blu per il codice progetto visualizzato */
-#display-project-code {
-    color: blue;
-}
-
-/* Colore verde per l'orario di inizio pausa */
-#start-time span {
-    color: green;
-}
-
-/* Colore rosso per l'orario di fine pausa */
-#end-time span {
-    color: red;
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    #countdown {
+        font-size: 2.2rem;
+    }
 }
