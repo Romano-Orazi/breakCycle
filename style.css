@@ -42,9 +42,9 @@ h1, h2, h3, p, li, strong, em, button {
     text-transform: uppercase;
 }
 
-/* Spaziatura uniforme tra sezioni */
+/* Spaziatura tra sezioni */
 .container > * {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem; /* Distanza uniforme tra sezioni */
 }
 
 /* Sezione codice progetto */
@@ -55,13 +55,13 @@ h1, h2, h3, p, li, strong, em, button {
 }
 
 #project-code-container label {
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
 }
 
 .input-group {
     display: flex;
     gap: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 0.5rem;
 }
 
 .input-group input {
@@ -85,21 +85,21 @@ h1, h2, h3, p, li, strong, em, button {
 
 /* Informazioni temporali */
 #time-info p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem; /* Spazio tra le righe di orario */
 }
 
 #start-time span {
-    color: #28a745; /* Verde */
+    color: #28a745; /* Verde per inizio pausa */
 }
 
 #end-time span {
-    color: #dc3545; /* Rosso */
+    color: #dc3545; /* Rosso per fine pausa */
 }
 
 /* Timer Countdown */
 #countdown {
     font-size: 3rem;
-    margin: 2rem 0;
+    margin: 3rem 0 2rem 0;
     color: #007bff;
     text-align: center;
     padding: 10px;
@@ -118,7 +118,7 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin: 10px 5px 15px 5px;
+    margin-bottom: 1.5rem;
 }
 
 button:hover {
@@ -136,6 +136,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     transition: transform 0.3s ease;
+    margin-left: 10px;
 }
 
 #loop-btn:hover .loop-icon {
@@ -161,11 +162,11 @@ ul {
     font-size: 14px;
     list-style-type: square;
     padding-left: 1.2em;
-    margin: 1rem 0;
+    margin-bottom: 2rem;
 }
 
 li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.8rem;
 }
 
 /* Colori specifici */
