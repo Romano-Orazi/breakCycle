@@ -26,7 +26,7 @@ function startCountdown(duration) {
     let timer = duration / 1000;
     countdownEl.textContent = formatTime(timer);
     
-    clearInterval(currentTimer);
+    clearInterval(currentTimer); // Pulisce eventuali timer attivi
     currentTimer = setInterval(() => {
         timer--;
         if (timer <= 0) {
@@ -40,9 +40,20 @@ function startCountdown(duration) {
             
             // Logica loop (4-7 minuti rimanenti)
             if (isLooping && timer >= 240 && timer <= 420) {
-                clearInterval(currentTimer);
-                playAudio('start');
-                startCountdown(15 * 60); // Ricomincia da 15 min
+                clearInterval(currentTimer); // Ferma il timer corrente
+                playAudio('start'); // Riproduce suono iniziale
+                
+                // Aggiorna l'orario di inizio e fine pausa
+                const now = new Date();
+                const duration = 15 * 60 * 1000; // 15 minuti
+                const endTime = new Date(now.getTime() + duration);
+                
+                // Aggiorna gli elementi DOM
+                document.getElementById("start-time").textContent = now.toLocaleTimeString();
+                document.getElementById("end-time").textContent = endTime.toLocaleTimeString();
+                
+                // Ricomincia il countdown da 15 minuti
+                startCountdown(duration);
             }
         }
     }, 1000);
