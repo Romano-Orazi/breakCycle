@@ -16,11 +16,11 @@
             <label for="project-code"><strong>Codice Progetto:</strong></label>
             <div class="input-group">
                 <input type="text" id="project-code" placeholder="Inserisci codice progetto" />
-                <button onclick="saveProjectCode()">Salva</button>
+                <button onclick="saveProjectCode()">Save</button>
             </div>
             <div id="code-display" style="margin-top: 5px;">
                 <p id="display-project-code" style="color: blue; display: inline-block; margin-right: 10px;">Nessun codice inserito</p>
-                <button type="button" id="edit-code-btn" onclick="showEditCode()" style="display: none;">Modifica</button>
+                <button type="button" id="edit-code-btn" onclick="showEditCode()" style="display: none;">Edit</button>
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             <p><strong>Inizio pausa: <span id="start-time" style="color: #28a745">--:--:--</span></strong></p>
             <p><strong>Fine pausa: <span id="end-time" style="color: #dc3545">--:--:--</span></strong></p>
         </div>
-        <button onclick="startBreak()">Inizia Pausa di 15 min</button>
+        <button onclick="startBreak()">START</button>
         <button id="loop-btn" onclick="toggleLoop()" title="Loop (4-7 min)">
             <span class="loop-icon">↻</span>
         </button>
