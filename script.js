@@ -4,7 +4,6 @@ const today = new Date().toISOString().split("T")[0];
 todayBreaks = todayBreaks.filter(b => b.date === today);
 localStorage.setItem("todayBreaks", JSON.stringify(todayBreaks));
 updateBreakList();
-
 let isLooping = false;
 let currentTimer = null;
 
@@ -15,7 +14,6 @@ function updateCurrentTime() {
     if (currentTimeEl) currentTimeEl.textContent = now.toLocaleTimeString();
 }
 setInterval(updateCurrentTime, 1000);
-
 window.onload = () => {
     updateCurrentTime();
     loadProjectCode();
@@ -26,7 +24,6 @@ function startCountdown(duration) {
     const countdownEl = document.getElementById("countdown");
     let timer = duration / 1000;
     countdownEl.textContent = formatTime(timer);
-
     clearInterval(currentTimer);
     currentTimer = setInterval(() => {
         timer--;
@@ -38,22 +35,17 @@ function startCountdown(duration) {
             document.querySelector('.loop-icon')?.classList.remove('active');
         } else {
             countdownEl.textContent = formatTime(timer);
-            
             // Logica loop (4-7 minuti rimanenti)
             if (isLooping && timer >= 240 && timer <= 420) {
                 clearInterval(currentTimer);
                 playAudio('start');
-                
                 const now = new Date();
                 const newDuration = 15 * 60 * 1000;
                 const endTime = new Date(now.getTime() + newDuration);
-                
                 const startTimeEl = document.getElementById("start-time");
                 const endTimeEl = document.getElementById("end-time");
-                
                 if (startTimeEl) startTimeEl.textContent = now.toLocaleTimeString();
                 if (endTimeEl) endTimeEl.textContent = endTime.toLocaleTimeString();
-                
                 startCountdown(newDuration);
             }
         }
@@ -71,16 +63,12 @@ function startBreak() {
     const now = new Date();
     const duration = 15 * 60 * 1000;
     const endTime = new Date(now.getTime() + duration);
-
     const startTimeEl = document.getElementById("start-time");
     const endTimeEl = document.getElementById("end-time");
-
     if (startTimeEl) startTimeEl.textContent = now.toLocaleTimeString();
     if (endTimeEl) endTimeEl.textContent = endTime.toLocaleTimeString();
-
     playAudio('start');
     startCountdown(duration);
-
     const projectCode = localStorage.getItem("projectCode") || "Nessun codice";
     todayBreaks.push({ 
         date: today, 
@@ -123,8 +111,9 @@ function saveProjectCode() {
     const code = document.getElementById("project-code").value.trim();
     if (code) {
         localStorage.setItem("projectCode", code);
-        document.getElementById("display-project-code").textContent = code;
+        document.getElementById("display-project-code").textContent = `Codice: ${code}`;
         document.querySelector(".input-group").style.display = "none";
+        updateEditButtonVisibility();
     } else {
         alert("Per favore, inserisci un codice progetto.");
     }
@@ -134,8 +123,24 @@ function loadProjectCode() {
     const savedCode = localStorage.getItem("projectCode");
     if (savedCode) {
         document.getElementById("project-code").value = savedCode;
-        document.getElementById("display-project-code").textContent = savedCode;
+        document.getElementById("display-project-code").textContent = `Codice: ${savedCode}`;
         document.querySelector(".input-group").style.display = "none";
+        updateEditButtonVisibility();
+    }
+}
+
+function showEditCode() {
+    document.querySelector(".input-group").style.display = "flex";
+    document.getElementById("edit-code-btn").style.display = "none";
+}
+
+function updateEditButtonVisibility() {
+    const code = localStorage.getItem("projectCode") || "";
+    const editBtn = document.getElementById("edit-code-btn");
+    if (code) {
+        editBtn.style.display = "inline-block";
+    } else {
+        editBtn.style.display = "none";
     }
 }
 
@@ -143,7 +148,6 @@ function loadProjectCode() {
 function toggleLoop() {
     isLooping = !isLooping;
     const icon = document.querySelector('.loop-icon');
-    
     if (icon) {
         icon.classList.toggle('active', isLooping);
     }
