@@ -89,3 +89,23 @@ li {
     margin: 5px 0;
     font-weight: bold;
 }
+
+/* Colore blu per "Programmazione Java" */
+#project-code-container + p em {
+    color: blue;
+}
+
+/* Colore blu per il codice progetto visualizzato */
+#display-project-code {
+    color: blue;
+}
+
+/* Colore verde per l'orario di inizio pausa */
+#start-time span {
+    color: green;
+}
+
+/* Colore rosso per l'orario di fine pausa */
+#end-time span {
+    color: red;
+}
