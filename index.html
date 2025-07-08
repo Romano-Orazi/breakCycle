@@ -11,7 +11,6 @@
         <img src="logo.png" alt="Logo Formatemp" class="logo">
         <h1>PAUSA<span id="current-date"></span></h1>
         <p><strong>Corso:</strong><em style="color: blue">Programmazione Java</em></p>
-
         <div id="project-code-container">
             <label for="project-code"><strong>Codice Progetto:</strong></label>
             <div class="input-group">
@@ -23,8 +22,10 @@
                 <button type="button" id="edit-code-btn" onclick="showEditCode()" style="display: none;">Edit</button>
             </div>
         </div>
-
         <div id="time-info">
+            <!-- Nuova riga: Data odierna -->
+            <p><strong>Data odierna: <span id="current-date-full">--/--/--</span></strong></p>
+            <!-- Ora attuale rimane invariata -->
             <p><strong>Ora attuale: <span id="current-time">--:--:--</span></strong></p>
             <p><strong>Inizio pausa: <span id="start-time" style="color: #28a745">--:--:--</span></strong></p>
             <p><strong>Fine pausa: <span id="end-time" style="color: #dc3545">--:--:--</span></strong></p>
