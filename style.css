@@ -155,5 +155,5 @@ li {
 
 /* Distanziamento tra le righe di orario */
 #time-info p {
-    margin-bottom: 1.5rem; /* Aumenta lo spazio tra "Ora attuale", "Inizio pausa" e "Fine pausa" */
+    margin-bottom: 0.8rem; /* Aumenta lo spazio tra "Ora attuale", "Inizio pausa" e "Fine pausa" */
 }
