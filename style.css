@@ -27,7 +27,7 @@ body {
 }
 
 /* Logo */
-.logo {
+.logo { 
     width: 120px;
     display: block;
     margin: 0 auto 1.5rem;
@@ -44,7 +44,7 @@ h1, h2, h3, p, li, strong, em, button {
 
 /* Spaziatura tra sezioni */
 .container > * {
-    margin-bottom: 2rem; /* Distanza uniforme tra sezioni */
+    margin-bottom: 2rem;
 }
 
 /* Sezione codice progetto */
@@ -54,17 +54,13 @@ h1, h2, h3, p, li, strong, em, button {
     gap: 0.5rem;
 }
 
-#project-code-container label {
-    margin-bottom: 0.5rem;
-}
-
-.input-group {
+.input-section {
     display: flex;
     gap: 10px;
     margin-bottom: 0.5rem;
 }
 
-.input-group input {
+.input-section input {
     flex: 1;
     padding: 0.5rem;
     font-size: 1rem;
@@ -72,28 +68,31 @@ h1, h2, h3, p, li, strong, em, button {
     border-radius: 3px;
 }
 
-.input-group button {
+.input-section button {
     padding: 0.5rem 1rem;
     font-size: 1rem;
 }
 
-#display-project-code {
-    color: blue;
-    font-weight: bold;
-    margin-top: 5px;
+.display-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-/* Informazioni temporali */
-#time-info p {
-    margin-bottom: 0.8rem; /* Spazio tra le righe di orario */
+/* Pulsante Edit piccolo */
+.edit-btn {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
 }
 
-#start-time span {
-    color: #28a745; /* Verde per inizio pausa */
-}
-
-#end-time span {
-    color: #dc3545; /* Rosso per fine pausa */
+.edit-btn:hover {
+    background-color: #5a6268;
 }
 
 /* Timer Countdown */
@@ -125,41 +124,9 @@ button:hover {
     background-color: #0056b3;
 }
 
-/* Bottone Loop */
-#loop-btn {
-    background-color: #28a745;
-    padding: 10px;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease;
-    margin-left: 10px;
-}
-
-#loop-btn:hover .loop-icon {
-    animation: rotate 1.5s linear infinite;
-}
-
-.loop-icon {
-    font-size: 24px;
-    transition: transform 0.5s ease;
-}
-
-@keyframes rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-.loop-icon.active {
-    animation: rotate 1.5s linear infinite;
-}
-
 /* Lista consigli e pause */
 ul {
-    font-size: 10px;
+    font-size: 14px;
     list-style-type: square;
     padding-left: 1.2em;
     margin-bottom: 2rem;
