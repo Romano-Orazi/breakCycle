@@ -9,19 +9,19 @@
     <div class="container">
         <img src="logo.png" alt="Logo Formatemp" class="logo">
         <h1><strong>PAUSA<span id="current-date"></span></strong></h1>
-        <p><strong>Corso:</strong><em> Programmazione Java</em></p>
+        <p><strong>Corso:</strong><em style="color: blue">Programmazione Java</em></p>
         
         <div id="project-code-container">
             <label for="project-code"><strong>Codice Progetto:</strong></label>
             <input type="text" id="project-code" placeholder="Inserisci codice progetto" />
             <button onclick="saveProjectCode()"><strong>Salva</strong></button>
-            <p id="display-project-code"><strong>Nessun codice inserito</strong></p>
+            <p id="display-project-code" style="color: blue">Nessun codice inserito</p>
         </div>
 
         <div id="time-info">
             <p><strong>Ora attuale: <span id="current-time">--:--:--</span></strong></p>
-            <p><strong>Inizio pausa: <span id="start-time">--:--:--</span></strong></p>
-            <p><strong>Fine pausa: <span id="end-time">--:--:--</span></strong></p>
+            <p><strong>Inizio pausa: <span style="color: green">--:--:--</span></strong></p>
+            <p><strong>Inizio pausa: <span style="color: green">--:--:--</span></strong></p>
         </div>
 
         <button onclick="startBreak()"><strong>Inizia Pausa di 15 min</strong></button>
