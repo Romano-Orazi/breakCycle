@@ -11,13 +11,14 @@ let currentTimer = null;
 // ====== AGGIORNA L'ORA CORRENTE ======
 function updateCurrentTime() {
     const now = new Date();
-    document.getElementById("current-time").textContent = now.toLocaleTimeString();
+    const currentTimeEl = document.getElementById("current-time");
+    if (currentTimeEl) currentTimeEl.textContent = now.toLocaleTimeString();
 }
 setInterval(updateCurrentTime, 1000);
 
 window.onload = () => {
     updateCurrentTime();
-    loadProjectCode(); // Carica il codice progetto
+    loadProjectCode();
 };
 
 // ====== TIMER COUNTDOWN ======
@@ -26,7 +27,7 @@ function startCountdown(duration) {
     let timer = duration / 1000;
     countdownEl.textContent = formatTime(timer);
 
-    clearInterval(currentTimer); // Pulisce eventuali timer attivi
+    clearInterval(currentTimer);
     currentTimer = setInterval(() => {
         timer--;
         if (timer <= 0) {
@@ -40,22 +41,19 @@ function startCountdown(duration) {
             
             // Logica loop (4-7 minuti rimanenti)
             if (isLooping && timer >= 240 && timer <= 420) {
-                clearInterval(currentTimer); // Ferma il timer corrente
-                playAudio('start'); // Riproduce suono iniziale
+                clearInterval(currentTimer);
+                playAudio('start');
                 
-                // Aggiorna l'orario di inizio e fine pausa
                 const now = new Date();
-                const newDuration = 15 * 60 * 1000; // 15 minuti
+                const newDuration = 15 * 60 * 1000;
                 const endTime = new Date(now.getTime() + newDuration);
                 
-                // Aggiorna gli elementi DOM
                 const startTimeEl = document.getElementById("start-time");
                 const endTimeEl = document.getElementById("end-time");
                 
                 if (startTimeEl) startTimeEl.textContent = now.toLocaleTimeString();
                 if (endTimeEl) endTimeEl.textContent = endTime.toLocaleTimeString();
                 
-                // Ricomincia il countdown da 15 minuti
                 startCountdown(newDuration);
             }
         }
@@ -71,10 +69,9 @@ function formatTime(seconds) {
 // ====== GESTIONE PAUSA ======
 function startBreak() {
     const now = new Date();
-    const duration = 15 * 60 * 1000; // 15 minuti
+    const duration = 15 * 60 * 1000;
     const endTime = new Date(now.getTime() + duration);
 
-    // Aggiorna l'orario di inizio e fine solo se gli elementi esistono
     const startTimeEl = document.getElementById("start-time");
     const endTimeEl = document.getElementById("end-time");
 
@@ -84,9 +81,7 @@ function startBreak() {
     playAudio('start');
     startCountdown(duration);
 
-    // Recupera il codice progetto
     const projectCode = localStorage.getItem("projectCode") || "Nessun codice";
-    // Registra la pausa con il codice progetto
     todayBreaks.push({ 
         date: today, 
         time: now.toLocaleTimeString(), 
@@ -129,10 +124,7 @@ function saveProjectCode() {
     if (code) {
         localStorage.setItem("projectCode", code);
         document.getElementById("display-project-code").textContent = code;
-        
-        // Nascondi sezione input, mostra sezione display
-        document.querySelector(".input-section").style.display = "none";
-        document.querySelector(".display-section").style.display = "flex";
+        document.querySelector(".input-group").style.display = "none";
     } else {
         alert("Per favore, inserisci un codice progetto.");
     }
@@ -143,20 +135,16 @@ function loadProjectCode() {
     if (savedCode) {
         document.getElementById("project-code").value = savedCode;
         document.getElementById("display-project-code").textContent = savedCode;
-        document.querySelector(".input-section").style.display = "none";
-        document.querySelector(".display-section").style.display = "flex";
+        document.querySelector(".input-group").style.display = "none";
     }
 }
 
-// ====== FUNZIONE PER TOGGLARE L'EDITOR ======
-function toggleEdit() {
-    const inputSection = document.querySelector(".input-section");
-    const displaySection = document.querySelector(".display-section");
+// ====== LOOP FUNCTIONALITY ======
+function toggleLoop() {
+    isLooping = !isLooping;
+    const icon = document.querySelector('.loop-icon');
     
-    inputSection.style.display = inputSection.style.display === "none" ? "flex" : "none";
-    displaySection.style.display = displaySection.style.display === "none" ? "flex" : "none";
-    
-    if (inputSection.style.display === "flex") {
-        document.getElementById("project-code").focus();
+    if (icon) {
+        icon.classList.toggle('active', isLooping);
     }
 }
