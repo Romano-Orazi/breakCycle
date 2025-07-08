@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-/* Stile globale con font pixelato */
+/* Font pixelato e stile globale */
 body {
     font-family: 'Press Start 2P', monospace;
     font-size: 16px;
@@ -42,15 +42,59 @@ h1, h2, h3, p, li, strong, em, button {
     text-transform: uppercase;
 }
 
-/* Colore blu per "Programmazione Java" e codice progetto */
-#project-code-container + p em,
-#display-project-code {
-    color: blue;
+/* Spaziatura uniforme tra sezioni */
+.container > * {
+    margin-bottom: 1.5rem;
 }
 
-/* Colore verde/oro/rosso per orari */
-#start-time span { color: #28a745; } /* Verde */
-#end-time span { color: #dc3545; }   /* Rosso */
+/* Sezione codice progetto */
+#project-code-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#project-code-container label {
+    margin-bottom: 0.3rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.input-group button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+#display-project-code {
+    color: blue;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Informazioni temporali */
+#time-info p {
+    margin-bottom: 0.5rem;
+}
+
+#start-time span {
+    color: #28a745; /* Verde */
+}
+
+#end-time span {
+    color: #dc3545; /* Rosso */
+}
 
 /* Timer Countdown */
 #countdown {
@@ -122,6 +166,12 @@ ul {
 
 li {
     margin-bottom: 0.5em;
+}
+
+/* Colori specifici */
+#project-code-container + p em,
+#display-project-code {
+    color: blue;
 }
 
 /* Responsive Design */
