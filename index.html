@@ -14,18 +14,11 @@
         
         <div id="project-code-container">
             <label for="project-code"><strong>Codice Progetto:</strong></label>
-            
-            <!-- Sezione input (nascondi dopo il salvataggio) -->
-            <div class="input-section">
+            <div class="input-group">
                 <input type="text" id="project-code" placeholder="Inserisci codice progetto" />
                 <button onclick="saveProjectCode()">Salva</button>
             </div>
-            
-            <!-- Sezione visualizzazione + pulsante Edit -->
-            <div class="display-section" style="display: none;">
-                <p id="display-project-code" style="color: blue; margin: 0;">Nessun codice inserito</p>
-                <button onclick="toggleEdit()" class="edit-btn">Edit</button>
-            </div>
+            <p id="display-project-code" style="color: blue; margin-top: 5px;">Nessun codice inserito</p>
         </div>
 
         <div id="time-info">
@@ -35,6 +28,10 @@
         </div>
 
         <button onclick="startBreak()">Inizia Pausa di 15 min</button>
+        <button id="loop-btn" onclick="toggleLoop()" title="Loop (4-7 min)">
+            <span class="loop-icon">↻</span>
+        </button>
+
         <h2>Timer Countdown</h2>
         <div id="countdown">00:00</div>
 
