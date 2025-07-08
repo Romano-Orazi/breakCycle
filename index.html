@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pausa Produttiva</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <img src="logo.png" alt="Logo Formatemp" class="logo">
+            <h1>PAUSA <span id="current-date" aria-label="Data corrente"></span></h1>
+            <p><strong>Corso:</strong> <em>Programmazione Java</em></p>
+        </header>
+
+        <section class="project-code">
+            <label for="project-code"><strong>Codice Progetto:</strong></label>
+            <div class="input-group">
+                <input type="text" id="project-code" placeholder="Inserisci codice progetto" aria-required="true">
+                <button id="save-code-btn">Salva</button>
+            </div>
+            <p id="display-project-code" class="saved-code">Nessun codice inserito</p>
+        </section>
+
+        <section class="time-info">
+            <p><strong>Ora attuale:</strong> <span id="current-time">--:--:--</span></p>
+            <p><strong>Inizio pausa:</strong> <span id="start-time">--:--:--</span></p>
+            <p><strong>Fine pausa:</strong> <span id="end-time">--:--:--</span></p>
+        </section>
+
+        <button id="start-break-btn">Inizia Pausa di 15 min</button>
+
+        <section class="countdown">
+            <h2>Timer Countdown</h2>
+            <div id="countdown" aria-live="polite">00:00</div>
+        </section>
+
+        <section class="tips">
+            <h3>Consigli per la tua pausa:</h3>
+            <ul>
+                <li><em>Passeggia un po' all'aria aperta</em></li>
+                <li><em>Fai dello stretching leggero</em></li>
+                <li><em>Bevi un bicchiere d'acqua</em></li>
+                <li><em>Distogli lo sguardo dallo schermo</em></li>
+                <li><em>Mangia uno spuntino sano</em></li>
+                <li><em>Fai tre respiri profondi</em></li>
+            </ul>
+        </section>
+
+        <section class="breaks">
+            <h3><strong>Pause Effettuate Oggi</strong></h3>
+            <ul id="breaks-list" class="breaks-list"></ul>
+        </section>
+    </main>
+
+    <!-- Audio Files -->
+    <audio id="startSound" src="audio/start.mp3"></audio>
+    <audio id="endSound" src="audio/end.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

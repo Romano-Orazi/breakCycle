@@ -1,0 +1,119 @@
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 18px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 1rem;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 1.5rem;
+}
+
+.project-code {
+    margin: 1.5rem 0;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.saved-code {
+    margin-top: 0.5rem;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.time-info {
+    margin: 1.5rem 0;
+}
+
+.countdown {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+#countdown {
+    font-size: 3.5rem;
+    color: #007BFF;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.tips ul {
+    list-style-type: decimal;
+    padding-left: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+.tips li {
+    margin-bottom: 0.5rem;
+}
+
+.breaks-list {
+    margin-top: 1rem;
+    list-style: none;
+    padding-left: 0;
+}
+
+.breaks-list li {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+    .input-group {
+        flex-direction: column;
+    }
+}
