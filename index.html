@@ -2,62 +2,53 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pausa Produttiva</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="container">
-        <header>
-            <img src="logo.png" alt="Logo Formatemp" class="logo">
-            <h1>PAUSA <span id="current-date" aria-label="Data corrente"></span></h1>
-            <p><strong>Corso:</strong> <em>Programmazione Java</em></p>
-        </header>
-
-        <section class="project-code">
+    <div class="container">
+        <img src="logo.png" alt="Logo Formatemp" class="logo">
+        <h1><strong>PAUSA<span id="current-date"></span></strong></h1>
+        <p><strong>Corso:</strong><em>Programmazione Java</em></p>
+        
+        <div id="project-code-container">
             <label for="project-code"><strong>Codice Progetto:</strong></label>
-            <div class="input-group">
-                <input type="text" id="project-code" placeholder="Inserisci codice progetto" aria-required="true">
-                <button id="save-code-btn">Salva</button>
-            </div>
-            <p id="display-project-code" class="saved-code">Nessun codice inserito</p>
-        </section>
+            <input type="text" id="project-code" placeholder="Inserisci codice progetto" />
+            <button onclick="saveProjectCode()"><strong>Salva</strong></button>
+            <p id="display-project-code"><strong>Nessun codice inserito</strong></p>
+        </div>
 
-        <section class="time-info">
-            <p><strong>Ora attuale:</strong> <span id="current-time">--:--:--</span></p>
-            <p><strong>Inizio pausa:</strong> <span id="start-time">--:--:--</span></p>
-            <p><strong>Fine pausa:</strong> <span id="end-time">--:--:--</span></p>
-        </section>
+        <div id="time-info">
+            <p><strong>Ora attuale: <span id="current-time">--:--:--</span></strong></p>
+            <p><strong>Inizio pausa: <span id="start-time">--:--:--</span></strong></p>
+            <p><strong>Fine pausa: <span id="end-time">--:--:--</span></strong></p>
+        </div>
 
-        <button id="start-break-btn">Inizia Pausa di 15 min</button>
+        <button onclick="startBreak()"><strong>Inizia Pausa di 15 min</strong></button>
+        <button id="loop-btn" onclick="toggleLoop()" title="Loop (4-7 min)">
+            <span class="loop-icon">↻</span>
+        </button>
 
-        <section class="countdown">
-            <h2>Timer Countdown</h2>
-            <div id="countdown" aria-live="polite">00:00</div>
-        </section>
+        <h2><strong>Timer Countdown</strong></h2>
+        <div id="countdown"><strong>00:00</strong></div>
 
-        <section class="tips">
-            <h3>Consigli per la tua pausa:</h3>
-            <ul>
-                <li><em>Passeggia un po' all'aria aperta</em></li>
-                <li><em>Fai dello stretching leggero</em></li>
-                <li><em>Bevi un bicchiere d'acqua</em></li>
-                <li><em>Distogli lo sguardo dallo schermo</em></li>
-                <li><em>Mangia uno spuntino sano</em></li>
-                <li><em>Fai tre respiri profondi</em></li>
-            </ul>
-        </section>
+        <h3><strong>Consigli per la tua pausa:</strong></h3>
+        <ul>
+            <li><strong>Passeggia un po' all'aria aperta</strong></li>
+            <li><strong>Fai dello stretching leggero</strong></li>
+            <li><strong>Bevi un bicchiere d'acqua</strong></li>
+            <li><strong>Distogli lo sguardo dallo schermo</strong></li>
+            <li><strong>Mangia uno spuntino sano</strong></li>
+            <li><strong>Fai tre respiri profondi</strong></li>
+        </ul>
 
-        <section class="breaks">
-            <h3><strong>Pause Effettuate Oggi</strong></h3>
-            <ul id="breaks-list" class="breaks-list"></ul>
-        </section>
-    </main>
+        <h3><strong>Pause Effettuate Oggi</strong></h3>
+        <ul id="breaks-list"></ul>
+    </div>
 
     <!-- Audio Files -->
     <audio id="startSound" src="audio/start.mp3"></audio>
     <audio id="endSound" src="audio/end.mp3"></audio>
-
     <script src="script.js"></script>
 </body>
 </html>
