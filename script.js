@@ -1,143 +1,127 @@
-// ====== MODULO GESTIONE DATI ======
-const STORAGE_KEYS = {
-    BREAKS: "todayBreaks",
-    PROJECT_CODE: "projectCode"
+// ====== VARIABILI GLOBALI ======
+let todayBreaks = JSON.parse(localStorage.getItem("todayBreaks") || "[]");
+const today = new Date().toISOString().split("T")[0];
+todayBreaks = todayBreaks.filter(b => b.date === today);
+localStorage.setItem("todayBreaks", JSON.stringify(todayBreaks));
+updateBreakList();
+
+let isLooping = false;
+let currentTimer = null;
+let loopInterval = null;
+
+// ====== AGGIORNA L'ORA CORRENTE ======
+function updateCurrentTime() {
+    const now = new Date();
+    document.getElementById("current-time").textContent = now.toLocaleTimeString();
+}
+setInterval(updateCurrentTime, 1000);
+window.onload = () => {
+    updateCurrentTime();
+    loadProjectCode();
 };
 
-class BreakManager {
-    constructor() {
-        this.today = new Date().toISOString().split("T")[0];
-        this.todayBreaks = this.loadBreaks();
-    }
-
-    loadBreaks() {
-        try {
-            const stored = localStorage.getItem(STORAGE_KEYS.BREAKS);
-            return stored ? JSON.parse(stored).filter(b => b.date === this.today) : [];
-        } catch (error) {
-            console.error("Errore nel caricamento delle pause:", error);
-            return [];
+// ====== TIMER COUNTDOWN ======
+function startCountdown(duration) {
+    const countdownEl = document.getElementById("countdown");
+    let timer = duration / 1000;
+    countdownEl.textContent = formatTime(timer);
+    
+    clearInterval(currentTimer);
+    currentTimer = setInterval(() => {
+        timer--;
+        if (timer <= 0) {
+            clearInterval(currentTimer);
+            countdownEl.textContent = "Fine pausa!";
+            playAudio('end');
+            isLooping = false;
+            document.querySelector('.loop-icon').classList.remove('active');
+        } else {
+            countdownEl.textContent = formatTime(timer);
+            
+            // Logica loop (4-7 minuti rimanenti)
+            if (isLooping && timer >= 240 && timer <= 420) {
+                clearInterval(currentTimer);
+                playAudio('start');
+                startCountdown(15 * 60); // Ricomincia da 15 min
+            }
         }
-    }
-
-    saveBreaks() {
-        localStorage.setItem(STORAGE_KEYS.BREAKS, JSON.stringify(this.todayBreaks));
-    }
-
-    addBreak(time, code) {
-        this.todayBreaks.push({ 
-            date: this.today, 
-            time, 
-            code: code || "Nessun codice"
-        });
-        this.saveBreaks();
-        updateBreakList(this.todayBreaks);
-    }
+    }, 1000);
 }
 
-// ====== MODULO UI ======
-const UI = {
-    elements: {
-        currentDate: document.getElementById("current-date"),
-        currentTime: document.getElementById("current-time"),
-        startTime: document.getElementById("start-time"),
-        endTime: document.getElementById("end-time"),
-        countdown: document.getElementById("countdown"),
-        projectCodeInput: document.getElementById("project-code"),
-        displayProjectCode: document.getElementById("display-project-code"),
-        breaksList: document.getElementById("breaks-list"),
-        saveCodeBtn: document.getElementById("save-code-btn"),
-        startBreakBtn: document.getElementById("start-break-btn")
-    },
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
 
-    updateClock() {
-        const now = new Date();
-        this.elements.currentTime.textContent = now.toLocaleTimeString();
-    },
-
-    updateCountdown(timer) {
-        const mins = String(Math.floor(timer / 60)).padStart(2, '0');
-        const secs = String(timer % 60).padStart(2, '0');
-        this.elements.countdown.textContent = `${mins}:${secs}`;
-    }
-};
-
-// ====== INIZIALIZZAZIONE ======
-const breakManager = new BreakManager();
-
-document.addEventListener('DOMContentLoaded', () => {
-    UI.updateClock();
-    UI.elements.currentDate.textContent = `(${new Date().toLocaleDateString('it-IT')})`;
-    
-    if (localStorage.getItem(STORAGE_KEYS.PROJECT_CODE)) {
-        UI.elements.displayProjectCode.textContent = localStorage.getItem(STORAGE_KEYS.PROJECT_CODE);
-        UI.elements.projectCodeInput.value = localStorage.getItem(STORAGE_KEYS.PROJECT_CODE);
-    }
-    
-    updateBreakList(breakManager.todayBreaks);
-    setInterval(UI.updateClock, 1000);
-});
-
-// ====== EVENT LISTENERS ======
-UI.elements.saveCodeBtn.addEventListener('click', () => {
-    const code = UI.elements.projectCodeInput.value.trim();
-    if (!code) {
-        alert("Inserisci un codice progetto valido.");
-        return;
-    }
-    
-    localStorage.setItem(STORAGE_KEYS.PROJECT_CODE, code);
-    UI.elements.displayProjectCode.textContent = code;
-});
-
-UI.elements.startBreakBtn.addEventListener('click', () => {
+// ====== GESTIONE PAUSA ======
+function startBreak() {
     const now = new Date();
     const duration = 15 * 60 * 1000; // 15 minuti
     const endTime = new Date(now.getTime() + duration);
     
-    UI.elements.startTime.textContent = now.toLocaleTimeString();
-    UI.elements.endTime.textContent = endTime.toLocaleTimeString();
+    document.getElementById("start-time").textContent = now.toLocaleTimeString();
+    document.getElementById("end-time").textContent = endTime.toLocaleTimeString();
     
     playAudio('start');
-    startCountdown(duration, () => playAudio('end'));
+    startCountdown(duration);
     
-    const projectCode = localStorage.getItem(STORAGE_KEYS.PROJECT_CODE) || "Nessun codice";
-    breakManager.addBreak(now.toLocaleTimeString(), projectCode);
-});
-
-// ====== FUNZIONI AUSILIARIE ======
-function startCountdown(duration, onComplete) {
-    let timer = Math.floor(duration / 1000);
-    UI.updateCountdown(timer);
-    
-    const interval = setInterval(() => {
-        if (timer <= 0) {
-            clearInterval(interval);
-            UI.elements.countdown.textContent = "Fine pausa!";
-            if (onComplete) onComplete();
-            return;
-        }
-        timer--;
-        UI.updateCountdown(timer);
-    }, 1000);
+    const projectCode = localStorage.getItem("projectCode") || "Nessun codice";
+    todayBreaks.push({ 
+        date: today, 
+        time: now.toLocaleTimeString(), 
+        code: projectCode 
+    });
+    localStorage.setItem("todayBreaks", JSON.stringify(todayBreaks));
+    updateBreakList();
 }
 
-function playAudio(type) {
-    try {
-        const sound = document.getElementById(`${type}Sound`);
-        sound.volume = 0.2;
-        sound.currentTime = 0;
-        sound.play();
-    } catch (error) {
-        console.error(`Errore riproduzione audio ${type}:`, error);
+// ====== LOOP FUNCTIONALITY ======
+function toggleLoop() {
+    isLooping = !isLooping;
+    const icon = document.querySelector('.loop-icon');
+    
+    if (isLooping) {
+        icon.classList.add('active');
+    } else {
+        icon.classList.remove('active');
     }
 }
 
-function updateBreakList(breaks) {
-    UI.elements.breaksList.innerHTML = "";
-    breaks.forEach(b => {
+// ====== NOTIFICHE AUDIO ======
+function playAudio(type) {
+    const sound = document.getElementById(type + "Sound");
+    sound.volume = 0.2;
+    sound.currentTime = 0;
+    sound.play();
+}
+
+// ====== LISTA DELLE PAUSE ======
+function updateBreakList() {
+    const list = document.getElementById("breaks-list");
+    list.innerHTML = "";
+    todayBreaks.forEach(b => {
         const li = document.createElement("li");
         li.textContent = `Pausa alle ${b.time} - Codice: ${b.code}`;
-        UI.elements.breaksList.appendChild(li);
+        list.appendChild(li);
     });
+}
+
+// ====== MODIFICA CODICE PROGETTO ======
+function saveProjectCode() {
+    const code = document.getElementById("project-code").value.trim();
+    if (code) {
+        localStorage.setItem("projectCode", code);
+        document.getElementById("display-project-code").textContent = code;
+    } else {
+        alert("Per favore, inserisci un codice progetto.");
+    }
+}
+
+function loadProjectCode() {
+    const savedCode = localStorage.getItem("projectCode");
+    if (savedCode) {
+        document.getElementById("project-code").value = savedCode;
+        document.getElementById("display-project-code").textContent = savedCode;
+    }
 }
