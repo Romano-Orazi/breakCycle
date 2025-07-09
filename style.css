@@ -35,39 +35,7 @@ body {
     padding: 5px;
     background: #fff;
 }
-.margin-image {
-  position: absolute; /* Keep absolute positioning relative to the body */
 
-  /* --- REMOVE or COMMENT OUT the following lines used for filling the screen: --- */
-  /* top: 0; */
-  /* right: 0; */
-  /* bottom: 0; */
-  /* left: 0; */
-  /* width: 100%; */
-  /* height: 100%; */
-  /* object-fit: cover; */
-  /* margin: auto; */
-  /* -------------------------------------------------------------------------- */
-
-  /* --- Add positioning properties to place it in the right margin area: --- */
-  top: 50%; /* Position the top edge at the vertical center of the body */
-  right: 16px; /* Position it 16px from the right edge of the body's padding */
-  /* Adjust the 'right' value based on the width of the body's padding (which is 32px) and how close to the edge you want it */
-
-  /* Use transform to vertically center the image based on its own height */
-  transform: translateY(-50%);
-
-  /* Set a specific width or max-width so it fits in the margin space */
-  width: 150px; /* Adjust size as needed */
-  height: auto; /* Maintain aspect ratio */
-
-  /* Keep z-index if you need it behind or in front of other elements */
-  z-index: auto; /* Or a specific number like 1 or 2 if needed */
-
-  /* Ensure no conflicting margin/padding */
-  margin: 0;
-  padding: 0;
-}
 /* Centriamo i titoli e i bottoni */
 h1, h2, h3, button {
     text-align: center;
