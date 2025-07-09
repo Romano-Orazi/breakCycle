@@ -39,14 +39,15 @@ body {
    /* Styles specifically for mobile devices */
     @media (max-width: 800px) {
   html, body {
-    height: 100%;
+    height: auto; /* Per permettere lo scroll */
+    min-height: 100dvh;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden; /* Nasconde lo scroll orizzontale */
   }
 
   .container {
-    min-height: 100dvh; /* Usa dynamic viewport height */
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -54,13 +55,16 @@ body {
     text-align: center;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto; /* Se hai molto contenuto */
+    width: 100%;
+    max-width: 100%;
+    overflow: visible;
   }
 
-  /* Opzionale: nasconde la navbar su mobile se vuoi un layout più semplice */
-  /*nav {
-    display: none;
-  }*/
+  /* Se hai un elemento con contenuto lungo, gli permetti di scrollare */
+  .content-scrollable {
+    overflow-y: auto;
+    padding-bottom: 40px;
+  }
 }
 /* Container principale */
 .container {
