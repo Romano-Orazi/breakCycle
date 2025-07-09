@@ -52,9 +52,7 @@ body {
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    word-break: break-word; /* Or overflow-wrap: break-word; */
     padding: 20px; /* Aggiunge spazio superiore/inferiore */
     box-sizing: border-box;
 
