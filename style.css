@@ -8,6 +8,7 @@
 }
 /* Font pixelato e stile globale */
 body {
+    position: relative;
     font-family: 'Press Start 2P', monospace;
     font-size: 16px;
     background-color: #f4f4f4;
@@ -34,6 +35,14 @@ body {
     padding: 5px;
     background: #fff;
 }
+.margin-image {
+      position: absolute;
+      top: 50px; /* Adjust vertical position */
+      right: 20px; /* Adjust horizontal position */
+      width: 100px; /* Adjust size as needed */
+      height: auto;
+      z-index: -1; /* Optional: send it behind other content if needed */
+    }
 /* Centriamo i titoli e i bottoni */
 h1, h2, h3, button {
     text-align: center;
