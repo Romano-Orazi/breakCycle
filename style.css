@@ -54,7 +54,7 @@ body {
     display: flex;
     flex-direction: column;
     word-break: break-word; /* Or overflow-wrap: break-word; */
-    font-size: clamp(8px, 4vw, 16px); /* Example: min 14px, preferred 4% of viewport width, max 16px */
+    font-size: clamp(0.5rem, 0.1875rem + 1vw, 0.75rem); /* Example: min 14px, preferred 4% of viewport width, max 16px */
     padding: 20px; /* Aggiunge spazio superiore/inferiore */
     box-sizing: border-box;
 
