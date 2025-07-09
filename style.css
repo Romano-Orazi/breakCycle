@@ -37,12 +37,30 @@ body {
     padding: 2rem;
 }
    /* Styles specifically for mobile devices */
-    @media (max-width: 800px) { /* Adjust max-width as needed for your definition of 'mobile' */
+    @media (max-width: 800px) {
   html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow: hidden;
   }
+
+  .container {
+    min-height: 100dvh; /* Usa dynamic viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Se hai molto contenuto */
+  }
+
+  /* Opzionale: nasconde la navbar su mobile se vuoi un layout più semplice */
+  /*nav {
+    display: none;
+  }*/
 }
 /* Container principale */
 .container {
