@@ -6,14 +6,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-@media (max-width: 768px) { /* Example breakpoint for mobile */
-      body {
-        display: flex;
-        flex-direction: column; /* Stack children vertically */
-        align-items: center; /* Center children horizontally */
-        justify-content: center; /* Center children vertically (if needed) */
-      }
-    }
 /* Font pixelato e stile globale */
 body {
     position: relative;
@@ -44,6 +36,16 @@ body {
     letter-spacing: 1px;
     padding: 2rem;
 }
+   /* Styles specifically for mobile devices */
+    @media (max-width: 768px) { /* You can adjust the max-width value based on your definition of "mobile" */
+      body {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Consider hiding overflow on mobile */
+      }
+    }
 /* Container principale */
 .container {
     max-width: 600px;
