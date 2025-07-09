@@ -37,15 +37,13 @@ body {
     padding: 2rem;
 }
    /* Styles specifically for mobile devices */
-    @media (max-width: 768px) { /* You can adjust the max-width value based on your definition of "mobile" */
-      body {
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        overflow: hidden; /* Consider hiding overflow on mobile */
-      }
-    }
+    @media (max-width: 800px) { /* Adjust max-width as needed for your definition of 'mobile' */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
 /* Container principale */
 .container {
     max-width: 600px;
