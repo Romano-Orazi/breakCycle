@@ -36,13 +36,30 @@ body {
     background: #fff;
 }
 .margin-image {
-      position: absolute;
-      top: 50px; /* Adjust vertical position */
-      right: 20px; /* Adjust horizontal position */
-      width: 100px; /* Adjust size as needed */
-      height: auto;
-      z-index: -1; /* Optional: send it behind other content if needed */
-    }
+  position: absolute; /* Keep absolute positioning */
+
+  /* Set all edges to 0 to make it cover the parent (body) */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Set width and height to 100% to explicitly occupy the bounds */
+  width: 100%;
+  height: 100%;
+
+  /* Use object-fit to control how the image fills the space while maintaining aspect ratio */
+  object-fit: cover; /* 'cover' makes it fill the container, potentially cropping edges */
+  /* object-fit: contain; */ /* 'contain' makes sure the whole image is visible, may leave space */
+
+  /* Using margin: auto with top/right/bottom/left: 0 centers the element */
+  margin: auto;
+
+  /* Ensure it's behind your main content if needed */
+  z-index: -1;
+
+  /* Remove or override any conflicting styles */
+  /* For example, remove 'transform: translate(-50%, -50%);' if it's still there */
 /* Centriamo i titoli e i bottoni */
 h1, h2, h3, button {
     text-align: center;
