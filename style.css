@@ -49,6 +49,7 @@ h1, h2, h3, p, li, strong, em, button {
 .info-grid div {
     display: flex;
     justify-content: space-between;
+    padding: 0.3rem 0;
     font-weight: bold; /* Tutto in grassetto */
 }
 /* Sezione codice progetto */
