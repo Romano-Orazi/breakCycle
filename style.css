@@ -11,8 +11,22 @@ body {
     position: relative;
     font-family: 'Press Start 2P', monospace;
     font-size: 16px;
-    background-color: #f4f4f4;
-    color: #333;
+    /*background-color: #f4f4f4;*/
+    /* Add a single background image that covers the body */
+  background-image: url('binary-code-background.png'); /* Replace with your image path */
+  background-size: cover;     /* Make the image cover the entire body area */
+  background-position: center; /* Center the image within the body */
+  background-repeat: no-repeat; /* Prevent the image from tiling */
+  background-attachment: fixed; /* Optional: Makes the background image fixed in the viewport when scrolling */
+
+  /* Add a fallback background color */
+  background-color: #cccccc; /* Or any color you prefer */
+
+  /* Ensure content z-index if needed (though not usually necessary) */
+  /* z-index: 0; */
+
+  /* ... other body styles ... */
+    /*color: #333;*/
     letter-spacing: 1px;
     padding: 2rem;
 }
