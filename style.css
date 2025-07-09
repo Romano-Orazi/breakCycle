@@ -45,6 +45,12 @@ h1, h2, h3, p, li, strong, em, button {
 .container > * {
     margin-bottom: 1rem;
 }
+/* allineo tempo */
+.info-grid div {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+}
 /* Sezione codice progetto */
 #project-code-container {
     display: flex;
