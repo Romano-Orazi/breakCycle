@@ -1,3 +1,5 @@
+/* Carica la fonte pixelata */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 /* Reset base */
 * {
     margin: 0;
@@ -100,6 +102,7 @@ button {
     cursor: pointer;
     transition: background-color 0.3s;
     margin-bottom: 0.8rem;
+    font-family: 'Press Start 2P', monospace; /* Usa la fonte pixelata */
 }
 button:hover {
     background-color: #0056b3;
@@ -123,6 +126,7 @@ button:hover {
 .loop-icon {
     font-size: 24px;
     transition: transform 0.5s ease;
+    font-family: 'Press Start 2P', monospace; /* Usa la fonte pixelata */
 }
 @keyframes rotate {
     from { transform: rotate(0deg); }
