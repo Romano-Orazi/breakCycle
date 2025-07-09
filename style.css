@@ -6,6 +6,14 @@
     padding: 0;
     box-sizing: border-box;
 }
+@media (max-width: 768px) { /* Example breakpoint for mobile */
+      body {
+        display: flex;
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center children horizontally */
+        justify-content: center; /* Center children vertically (if needed) */
+      }
+    }
 /* Font pixelato e stile globale */
 body {
     position: relative;
