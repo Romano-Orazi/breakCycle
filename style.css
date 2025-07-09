@@ -13,13 +13,13 @@ body {
     font-size: 16px;
     /*background-color: #f4f4f4;*/
     /* Add a semi-transparent color layer BEFORE the image */
-  background-image:
+  /*background-image:
     /* Topmost layer: semi-transparent black (adjust opacity 0.3) */
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    /*linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
     /* Bottom layer: your background image */
-    url("https://romano-orazi.github.io/breakCycle/binary-code-background.png");
+    /*url("https://romano-orazi.github.io/breakCycle/binary-code-background.png");
     /* Add a single background image that covers the body */
- /* background-image: url('binary-code-background.png'); /* Replace with your image path */
+  background-image: url('binary-code-background.png'); /* Replace with your image path */
   background-size: cover;     /* Make the image cover the entire body area */
   background-position: center; /* Center the image within the body */
   background-repeat: no-repeat; /* Prevent the image from tiling */
