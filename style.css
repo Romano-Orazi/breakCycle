@@ -36,30 +36,38 @@ body {
     background: #fff;
 }
 .margin-image {
-  position: absolute; /* Keep absolute positioning */
+  position: absolute; /* Keep absolute positioning relative to the body */
 
-  /* Set all edges to 0 to make it cover the parent (body) */
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  /* --- REMOVE or COMMENT OUT the following lines used for filling the screen: --- */
+  /* top: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  /* left: 0; */
+  /* width: 100%; */
+  /* height: 100%; */
+  /* object-fit: cover; */
+  /* margin: auto; */
+  /* -------------------------------------------------------------------------- */
 
-  /* Set width and height to 100% to explicitly occupy the bounds */
-  width: 100%;
-  height: 100%;
+  /* --- Add positioning properties to place it in the right margin area: --- */
+  top: 50%; /* Position the top edge at the vertical center of the body */
+  right: 16px; /* Position it 16px from the right edge of the body's padding */
+  /* Adjust the 'right' value based on the width of the body's padding (which is 32px) and how close to the edge you want it */
 
-  /* Use object-fit to control how the image fills the space while maintaining aspect ratio */
-  object-fit: cover; /* 'cover' makes it fill the container, potentially cropping edges */
-  /* object-fit: contain; */ /* 'contain' makes sure the whole image is visible, may leave space */
+  /* Use transform to vertically center the image based on its own height */
+  transform: translateY(-50%);
 
-  /* Using margin: auto with top/right/bottom/left: 0 centers the element */
-  margin: auto;
+  /* Set a specific width or max-width so it fits in the margin space */
+  width: 150px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
 
-  /* Ensure it's behind your main content if needed */
-  z-index: -1;
+  /* Keep z-index if you need it behind or in front of other elements */
+  z-index: auto; /* Or a specific number like 1 or 2 if needed */
 
-  /* Remove or override any conflicting styles */
-  /* For example, remove 'transform: translate(-50%, -50%);' if it's still there */
+  /* Ensure no conflicting margin/padding */
+  margin: 0;
+  padding: 0;
+}
 /* Centriamo i titoli e i bottoni */
 h1, h2, h3, button {
     text-align: center;
